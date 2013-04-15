@@ -1,2 +1,0 @@
-1.0
-{'vimproc': {'checked_time': 1366036620, 'installed_uri': 'https://github.com/Shougo/vimproc.git', 'updated_time': '1365662025'}, 'vim-colors-solarized': {'checked_time': 1366036392, 'installed_uri': 'https://github.com/altercation/vim-colors-solarized.git', 'updated_time': '1304977141'}, 'neobundle.vim': {'checked_time': 1366036389, 'installed_uri': 'https://github.com/Shougo/neobundle.vim.git', 'updated_time': 1366036389}, 'vim-surround': {'checked_time': 1366036849, 'installed_uri': 'https://github.com/tpope/vim-surround.git', 'updated_time': '1358911585'}}
