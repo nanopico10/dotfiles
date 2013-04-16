@@ -1,1 +1,0 @@
-/home/p0075317/github/vimconf.d/.vim
