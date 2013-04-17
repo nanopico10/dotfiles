@@ -9,7 +9,7 @@ endif
 let g:neobundle_default_git_protocol='https'
  
 NeoBundleFetch 'Shougo/neobundle.vim'
-" After install, turn shell ~/.vim/bundle/vimproc, 
+" After installing vimproc, turn shell ~/.vim/bundle/vimproc, 
 " (e.g.)make -f your_machines_makefile
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'

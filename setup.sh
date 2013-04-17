@@ -25,5 +25,14 @@ if [ $VIMPROC_MAKE ] ; then
   make -f $VIMPROC_MAKE
   popd
 else
-  echo -e "\e[32m[INFO] You should run 'make -f YOUR_COMPUTER_MAKEFILE' in ./vimfiles/bundle/vimproc.\e[m"
+  echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
+fi
+
+### Create symlink
+if [ ! -e ~/.vimrc ] ; then
+  ln -s ./_vimrc ~/.vimrc
+fi
+
+if [ ! -e ~/.vim ] ; then
+  ln -s ./vimfils ~/.vim
 fi
