@@ -17,11 +17,6 @@ NeoBundle 'Shougo/neocomplcache'
 
 NeoBundle 'tpope/vim-surround'
 
-NeoBundle 'altercation/vim-colors-solarized'
-syntax enable
-set background=dark
-colorscheme solarized
-
 filetype plugin on
 filetype indent on
 
