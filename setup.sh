@@ -6,20 +6,21 @@ mkdir -p ./vimfiles/bundle
 git clone https://github.com/Shougo/neobundle.vim.git ./vimfiles/bundle/neobundle.vim
 
 ### vimproc
-git clone https://github.com/Shougo/vimproc.git ./vimfiles/bundle/
+git clone https://github.com/Shougo/vimproc.git ./vimfiles/bundle/vimproc
 # For UNIX
 OS=`uname -s`
 case $OS in
-  "Linux")
-    VIMPROC_MAKE=make_unix.mak
-    ;;
-  "Darwin")
-    VIMPROC_MAKE=make_mac.mak
-    ;;
-  *)
-    VIMPROC_MAKE=
+    "Linux")
+        VIMPROC_MAKE=make_unix.mak
+        ;;
+    "Darwin")
+        VIMPROC_MAKE=make_mac.mak
+        ;;
+    *)
+        VIMPROC_MAKE=
+        ;;
 esac
-
+# Build library
 if [ $VIMPROC_MAKE ] ; then
   pushd ./vimfiles/bundle/vimproc
   make -f $VIMPROC_MAKE
@@ -28,18 +29,21 @@ else
   echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
 fi
 
+
 ### Create symbolic links
-if [ ! -e ~/.vimrc ] ; then
-  echo -e "\e[32m[INFO] Create a symbolic link : ~/.vimrc\e[m"
-  ln -s ./_vimrc ~/.vimrc
-fi
+function symlink() {
+    if [ ! -e $2 ] ; then
+        f=$(cd $(dirname $1) && pwd)/$(basename $1)
+        echo -e "\e[32m[INFO] Create a symbolic link : \e[m${f} -> $2"
+        ln -s $f $2
+    fi
+}
 
-if [ ! -e ~/.givm ] ; then
-  echo -e "\e[32m[INFO] Create a symbolic link : ~/.gvimrc\e[m"
-  ln -s _gvimrc ~/.gvimrc
-fi
+symlink ./_vimrc ~/.vimrc 
+symlink ./_gvimrc ~/.gvimrc
+symlink ./vimfiles ~/.vim
 
-if [ ! -e ~/.vim ] ; then
-  echo -e "\e[32m[INFO] Create a symbolic link : ~/.vim\e[m"
-  ln -s ./vimfils ~/.vim
-fi
+### Install plugins
+echo -e "\e[32m[INFO] Install plugins.\e[m"
+vim -u ~/.vimrc -c 'NeoBundleInstall' -c 'qall'
+
