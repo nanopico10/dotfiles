@@ -34,7 +34,7 @@ fi
 function symlink() {
     if [ ! -e $2 ] ; then
         f=$(cd $(dirname $1) && pwd)/$(basename $1)
-        echo -e "\e[32m[INFO] Create a symbolic link : \e[m${f} -> $2"
+        echo -e "\e[32m[INFO] Create a symbolic link : \e[m$$2 -> {f}"
         ln -s $f $2
     fi
 }
