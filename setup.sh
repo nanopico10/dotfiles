@@ -22,11 +22,11 @@ case $OS in
 esac
 # Build library
 if [ $VIMPROC_MAKE ] ; then
-  pushd ./vimfiles/bundle/vimproc
-  make -f $VIMPROC_MAKE
-  popd
+    pushd ./vimfiles/bundle/vimproc
+    make -f $VIMPROC_MAKE
+    popd
 else
-  echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
+    echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
 fi
 
 
