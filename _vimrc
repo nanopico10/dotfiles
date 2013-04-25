@@ -21,3 +21,9 @@ filetype plugin on
 filetype indent on
 
 NeoBundleCheck
+
+" -------------------------------------
+"  Enable mode line
+" -------------------------------------
+set modeline
+set modelines=5

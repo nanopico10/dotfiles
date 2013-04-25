@@ -29,7 +29,6 @@ else
     echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
 fi
 
-
 ### Create symbolic links
 function symlink() {
     if [ ! -e $2 ] ; then
@@ -47,3 +46,4 @@ symlink ./vimfiles ~/.vim
 echo -e "\e[32m[INFO] Install plugins.\e[m"
 vim -u ~/.vimrc -c 'NeoBundleInstall' -c 'qall'
 
+# vim: expandtab ts=4 sw=4 sts=4 ff=unix
