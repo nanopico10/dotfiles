@@ -32,7 +32,15 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 
+" -------------------------------------
+" vim-surround
+" -------------------------------------
 NeoBundle 'tpope/vim-surround'
+
+" -------------------------------------
+" project.vim
+" -------------------------------------
+" NeoBundle 'vim-scripts/project.vim'
 
 filetype plugin on
 filetype indent on
