@@ -27,3 +27,5 @@ NeoBundleCheck
 " -------------------------------------
 set modeline
 set modelines=5
+
+" vi: expandtab ts=4 sw=4 sts=4 ff=unix
