@@ -1,4 +1,5 @@
 set nocompatible
+filetype off
 filetype plugin off
 filetype indent off
  
@@ -30,12 +31,6 @@ NeoBundle 'Shougo/vimproc'
 " }}}
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-
-" -------------------------------------
-" vim-surround
-" -------------------------------------
-NeoBundle 'tpope/vim-surround'
 
 " -------------------------------------
 " project.vim
@@ -44,8 +39,28 @@ NeoBundle 'tpope/vim-surround'
 
 filetype plugin on
 filetype indent on
+syntax on
 
 NeoBundleCheck
+
+" -------------------------------------
+" neocomplcache
+" -------------------------------------
+let g:neocomplcache_enable_at_startup = 1
+NeoBundle 'Shougo/neocomplcache'
+set infercase
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_use_vimproc = 1
+let g:neocomplcache_skip_auto_completion_time = '0,3'
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" -------------------------------------
+" vim-surround
+" -------------------------------------
+NeoBundle 'tpope/vim-surround'
 
 " -------------------------------------
 "  Enable mode line
@@ -69,4 +84,4 @@ set statusline+=\ [%04v,%04l]\ -\ %p%%\ [%{&fileencoding}]
 set laststatus=2
 " }}}
 
-" vi: expandtab ts=4 sw=4 sts=4 ff=unix
+" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix 
