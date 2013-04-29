@@ -37,6 +37,7 @@ NeoBundle 'Shougo/unite.vim'
 " -------------------------------------
 NeoBundle 'thinca/vim-localrc'
 
+
 filetype plugin on
 filetype indent on
 syntax on
@@ -93,5 +94,11 @@ set statusline+=\ [ASCII=\%03.3b(0x\%02.2B)
 set statusline+=\ [%04v,%04l]\ -\ %p%%\ [%{&fileencoding}]
 set laststatus=2
 " }}}
+
+" -------------------------------------
+"  Load a local vimrc if exists.
+"  This function searches .vim.local from current to root directories.
+" -------------------------------------
+call localrc#load('.vimrc.local', getcwd())
 
 " vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix 
