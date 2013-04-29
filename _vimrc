@@ -33,9 +33,9 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 
 " -------------------------------------
-" project.vim
+" localrc
 " -------------------------------------
-" NeoBundle 'vim-scripts/project.vim'
+NeoBundle 'thinca/vim-localrc'
 
 filetype plugin on
 filetype indent on
@@ -53,16 +53,24 @@ let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_use_vimproc = 1
-let g:neocomplcache_skip_auto_completion_time = '0,3'
 imap <expr><C-g>     neocomplcache#undo_completion()
-imap <expr><CR>      neocomplcache#smart_close_popup() . "<CR>" . "<Plug>DiscretionaryEnd"
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 
 " -------------------------------------
 " vim-surround
 " -------------------------------------
 NeoBundle 'tpope/vim-surround'
+
+" -------------------------------------
+" vim-fugitive
+" -------------------------------------
+NeoBundle 'tpope/vim-fugitive'
+
+" -------------------------------------
+" NERDTree
+" -------------------------------------
+NeoBundle 'scrooloose/nerdtree'
 
 " -------------------------------------
 "  Enable mode line
