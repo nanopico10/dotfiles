@@ -1,32 +1,38 @@
 #!/bin/bash
 
-mkdir -p ./vimfiles/bundle
+if [ ! -d ./vimfiles/bundle ] ; then
+    mkdir -p ./vimfiles/bundle
+fi
 
 ### NeoBundle
-git clone https://github.com/Shougo/neobundle.vim.git ./vimfiles/bundle/neobundle.vim
+if [ ! -s ./vimfiles/bundle/neobundle.vim ] ; then
+    git clone https://github.com/Shougo/neobundle.vim.git ./vimfiles/bundle/neobundle.vim
+fi
 
 ### vimproc
-git clone https://github.com/Shougo/vimproc.git ./vimfiles/bundle/vimproc
-# For UNIX
-OS=`uname -s`
-case $OS in
-    "Linux")
+if [ ! -s ./vimfiles/bundle/vimproc ] ; then
+    git clone https://github.com/Shougo/vimproc.git ./vimfiles/bundle/vimproc
+    # For UNIX
+    OS=`uname -s`
+    case $OS in
+        "Linux")
         VIMPROC_MAKE=make_unix.mak
         ;;
-    "Darwin")
+        "Darwin")
         VIMPROC_MAKE=make_mac.mak
         ;;
-    *)
+        *)
         VIMPROC_MAKE=
         ;;
-esac
-# Build library
-if [ $VIMPROC_MAKE ] ; then
-    pushd ./vimfiles/bundle/vimproc
-    make -f $VIMPROC_MAKE
-    popd
-else
-    echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
+    esac
+    # Build library
+    if [ $VIMPROC_MAKE ] ; then
+        pushd ./vimfiles/bundle/vimproc
+        make -f $VIMPROC_MAKE
+        popd
+    else
+        echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
+    fi
 fi
 
 ### Create symbolic links
