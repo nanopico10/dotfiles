@@ -39,9 +39,11 @@ NeoBundle 'thinca/vim-localrc'
 
 " -------------------------------------
 " neocomplcache
+" neosnippet
 " -------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 set infercase
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -50,6 +52,7 @@ let g:neocomplcache_use_vimproc = 1
 imap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " -------------------------------------
 " vim-surround
@@ -107,6 +110,7 @@ aug RailsDictSetting
 aug END
 "}}}
 
+filetype on
 filetype plugin on
 filetype indent on
 syntax on
@@ -134,6 +138,12 @@ set statusline+=\ [ASCII=\%03.3b(0x\%02.2B)
 set statusline+=\ [%04v,%04l]\ -\ %p%%\ [%{&fileencoding}]
 set laststatus=2
 " }}}
+
+" -------------------------------------
+"  Emphasize ZenkakuSpace
+" -------------------------------------
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+match ZenkakuSpace /　/
 
 " -------------------------------------
 "  Load a local vimrc if exists.
