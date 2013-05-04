@@ -75,6 +75,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundleLazy 'vim-ruby/vim-ruby', {
     \ 'autoload' : { 'filetypes': ['ruby', 'eruby', 'haml'] } }
 compiler ruby
+autocmd FileType ruby set sw=2 sts=2 et autoindent ts=2
 
 " -------------------------------------
 " vim-rails
