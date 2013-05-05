@@ -163,6 +163,17 @@ highlight ZenkakuSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
 match ZenkakuSpace /　/
 
 " -------------------------------------
+"  Open search result window with 
+"  in vimgrep command.
+" -------------------------------------
+"  {{{
+augroup grepopen
+    autocmd!
+    autocmd QuickFixCmdPost vimgrep cw
+augroup END
+" }}}
+
+" -------------------------------------
 "  Load a local vimrc if exists.
 "  This function searches .vim.local from current to root directories.
 " -------------------------------------
