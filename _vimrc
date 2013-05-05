@@ -180,6 +180,15 @@ augroup END
 " }}}
 
 " -------------------------------------
+"  Switch the next tab.
+" -------------------------------------
+" non-GUI Vim doesn't work..
+nnoremap <C-S-tab>  :tabprevious<CR>
+nnoremap <C-tab>    :tabnext<CR>
+" Only this keymap does work in non-GUI Vim.
+nnoremap <C-t>      :tabnext<CR>
+
+" -------------------------------------
 "  Load a local vimrc if exists.
 "  This function searches .vim.local from current to root directories.
 " -------------------------------------
