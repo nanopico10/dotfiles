@@ -4,7 +4,7 @@ filetype plugin off
 filetype indent off
  
 " -------------------------------------
-" NeoBundle
+"  NeoBundle
 " -------------------------------------
 " {{{
 if has('vim_starting')
@@ -33,13 +33,13 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 
 " -------------------------------------
-" localrc
+"  localrc
 " -------------------------------------
 NeoBundle 'thinca/vim-localrc'
 
 " -------------------------------------
-" neocomplcache
-" neosnippet
+"  neocomplcache
+"  neosnippet
 " -------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'Shougo/neocomplcache'
@@ -55,7 +55,7 @@ imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " -------------------------------------
-" vim-surround
+"  vim-surround
 " -------------------------------------
 NeoBundle 'tpope/vim-surround'
 
@@ -65,12 +65,12 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 
 " -------------------------------------
-" NERDTree
+"  NERDTree
 " -------------------------------------
 NeoBundle 'scrooloose/nerdtree'
 
 " -------------------------------------
-" vim-ruby
+"  vim-ruby
 " -------------------------------------
 NeoBundleLazy 'vim-ruby/vim-ruby', {
     \ 'autoload' : { 'filetypes': ['ruby', 'eruby', 'haml'] } }
@@ -78,7 +78,7 @@ compiler ruby
 autocmd FileType ruby set sw=2 sts=2 et autoindent ts=2
 
 " -------------------------------------
-" vim-rails
+"  vim-rails
 " -------------------------------------
 NeoBundle 'tpope/vim-rails'
 "{{{
