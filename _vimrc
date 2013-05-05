@@ -157,9 +157,9 @@ if has('unix') && !has('gui_running')
 endif
 
 " -------------------------------------
-"  Emphasize ZenkakuSpace
+"  Highlight ZenkakuSpace
 " -------------------------------------
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+highlight ZenkakuSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
 match ZenkakuSpace /　/
 
 " -------------------------------------
@@ -168,4 +168,4 @@ match ZenkakuSpace /　/
 " -------------------------------------
 call localrc#load('.vimrc.local', getcwd())
 
-" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix 
+" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix encoding=utf-8
