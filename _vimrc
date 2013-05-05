@@ -139,6 +139,22 @@ set statusline+=\ [ASCII=\%03.3b(0x\%02.2B)
 set statusline+=\ [%04v,%04l]\ -\ %p%%\ [%{&fileencoding}]
 set laststatus=2
 " }}}
+" -------------------------------------
+"  Switch status bar color
+"  between insert and edit mode.
+" -------------------------------------
+augroup switchStatusLine
+    au!
+    au InsertEnter * highlight StatusLine guifg=DarkBlue guibg=Blue
+        \ ctermfg=DarkGray ctermbg=DarkBlue cterm=none
+    au InsertLeave * highlight StatusLine guifg=DarkBlue guibg=DarkGray
+        \ ctermfg=DarkBlue ctermbg=DarkGray cterm=none
+augroup END
+" Apply to change colors immediately for not-GUI Vim (Cygwin and so on).
+if has('unix') && !has('gui_running')
+    inoremap <silent> <ESC> <ESC>
+    inoremap <silent> <C-[> <ESC>
+endif
 
 " -------------------------------------
 "  Emphasize ZenkakuSpace
