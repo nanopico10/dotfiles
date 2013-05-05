@@ -65,6 +65,12 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 
 " -------------------------------------
+"  vimfiler
+" -------------------------------------
+NeoBundle 'Shougo/vimfiler'
+let g:vimfiler_as_default_explorer = 1
+
+" -------------------------------------
 "  NERDTree
 " -------------------------------------
 NeoBundle 'scrooloose/nerdtree'
