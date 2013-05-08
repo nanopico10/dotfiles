@@ -4,7 +4,7 @@ filetype plugin off
 filetype indent off
  
 " -------------------------------------
-" NeoBundle
+"  NeoBundle
 " -------------------------------------
 " {{{
 if has('vim_starting')
@@ -33,22 +33,17 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 
 " -------------------------------------
-" localrc
+"  localrc
 " -------------------------------------
 NeoBundle 'thinca/vim-localrc'
 
-
-filetype plugin on
-filetype indent on
-syntax on
-
-NeoBundleCheck
-
 " -------------------------------------
-" neocomplcache
+"  neocomplcache
+"  neosnippet
 " -------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 set infercase
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -57,9 +52,10 @@ let g:neocomplcache_use_vimproc = 1
 imap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " -------------------------------------
-" vim-surround
+"  vim-surround
 " -------------------------------------
 NeoBundle 'tpope/vim-surround'
 
@@ -69,9 +65,64 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 
 " -------------------------------------
-" NERDTree
+"  vimfiler
+" -------------------------------------
+NeoBundle 'Shougo/vimfiler'
+let g:vimfiler_as_default_explorer = 1
+
+" -------------------------------------
+"  NERDTree
 " -------------------------------------
 NeoBundle 'scrooloose/nerdtree'
+
+" -------------------------------------
+"  vim-ruby
+" -------------------------------------
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+    \ 'autoload' : { 'filetypes': ['ruby', 'eruby', 'haml'] } }
+compiler ruby
+autocmd FileType ruby set sw=2 sts=2 et autoindent ts=2
+
+" -------------------------------------
+"  vim-rails
+" -------------------------------------
+NeoBundle 'tpope/vim-rails'
+"{{{
+let g:rails_default_file='config/database.yml'
+let g:rails_level = 4
+let g:rails_mappings=1
+let g:rails_modelines=0
+" let g:rails_some_option = 1
+let g:rails_statusline = 1
+" let g:rails_subversion=0
+" let g:rails_syntax = 1
+" let g:rails_url='http://localhost:3000'
+" let g:rails_ctags_arguments='--languages=-javascript'
+" let g:rails_ctags_arguments = ''
+function! SetUpRailsSetting()
+    nnoremap <buffer><Space>r :R<CR>
+    nnoremap <buffer><Space>a :A<CR>
+    nnoremap <buffer><Space>m :Rmodel<Space>
+    nnoremap <buffer><Space>c :Rcontroller<Space>
+    nnoremap <buffer><Space>v :Rview<Space>
+    nnoremap <buffer><Space>p :Rpreview<CR>
+endfunction
+
+aug MyAutoCmd
+    au User Rails call SetUpRailsSetting()
+aug END
+
+aug RailsDictSetting
+    au!
+aug END
+"}}}
+
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+NeoBundleCheck
 
 " -------------------------------------
 "  Enable mode line
@@ -94,6 +145,48 @@ set statusline+=\ [ASCII=\%03.3b(0x\%02.2B)
 set statusline+=\ [%04v,%04l]\ -\ %p%%\ [%{&fileencoding}]
 set laststatus=2
 " }}}
+" -------------------------------------
+"  Switch status bar color
+"  between insert and edit mode.
+" -------------------------------------
+augroup switchStatusLine
+    au!
+    au InsertEnter * highlight StatusLine guifg=DarkBlue guibg=Blue
+        \ ctermfg=DarkGray ctermbg=DarkBlue cterm=none
+    au InsertLeave * highlight StatusLine guifg=DarkBlue guibg=DarkGray
+        \ ctermfg=DarkBlue ctermbg=DarkGray cterm=none
+augroup END
+" Apply to change colors immediately for not-GUI Vim (Cygwin and so on).
+if has('unix') && !has('gui_running')
+    inoremap <silent> <ESC> <ESC>
+    inoremap <silent> <C-[> <ESC>
+endif
+
+" -------------------------------------
+"  Highlight ZenkakuSpace
+" -------------------------------------
+highlight ZenkakuSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+match ZenkakuSpace /　/
+
+" -------------------------------------
+"  Open search result window with 
+"  in vimgrep command.
+" -------------------------------------
+"  {{{
+augroup grepopen
+    autocmd!
+    autocmd QuickFixCmdPost vimgrep cw
+augroup END
+" }}}
+
+" -------------------------------------
+"  Switch the next tab.
+" -------------------------------------
+" non-GUI Vim doesn't work..
+nnoremap <C-S-tab>  :tabprevious<CR>
+nnoremap <C-tab>    :tabnext<CR>
+" Only this keymap does work in non-GUI Vim.
+nnoremap <C-t>      :tabnext<CR>
 
 " -------------------------------------
 "  Load a local vimrc if exists.
@@ -101,4 +194,4 @@ set laststatus=2
 " -------------------------------------
 call localrc#load('.vimrc.local', getcwd())
 
-" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix 
+" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix encoding=utf-8
