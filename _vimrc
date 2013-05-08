@@ -60,9 +60,14 @@ imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" 
 NeoBundle 'tpope/vim-surround'
 
 " -------------------------------------
-" vim-fugitive
+"  vim-fugitive
 " -------------------------------------
 NeoBundle 'tpope/vim-fugitive'
+
+" -------------------------------------
+"  ctrlp.vim
+" -------------------------------------
+NeoBundle 'kien/ctrlp.vim'
 
 " -------------------------------------
 "  vimfiler
