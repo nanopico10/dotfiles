@@ -194,6 +194,11 @@ nnoremap <C-tab>    :tabnext<CR>
 nnoremap <C-t>      :tabnext<CR>
 
 " -------------------------------------
+"  Set mouse enabled.
+" -------------------------------------
+set mouse=a
+
+" -------------------------------------
 "  Load a local vimrc if exists.
 "  This function searches .vim.local from current to root directories.
 " -------------------------------------
