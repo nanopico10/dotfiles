@@ -8,8 +8,13 @@ filetype indent off
 " -------------------------------------
 " {{{
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+    if has('win32') || has('win64')
+        set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+        call neobundle#rc(expand('~/vimfiles/bundle/'))
+    else
+        set runtimepath+=~/.vim/bundle/neobundle.vim/
+        call neobundle#rc(expand('~/.vim/bundle/'))
+    endif
 endif
 
 " Set the vimproc library path
@@ -156,7 +161,7 @@ set laststatus=2
 " -------------------------------------
 augroup switchStatusLine
     au!
-    au InsertEnter * highlight StatusLine guifg=DarkBlue guibg=Blue
+    au InsertEnter * highlight StatusLine guifg=DarkGray guibg=DarkBlue
         \ ctermfg=DarkGray ctermbg=DarkBlue cterm=none
     au InsertLeave * highlight StatusLine guifg=DarkBlue guibg=DarkGray
         \ ctermfg=DarkBlue ctermbg=DarkGray cterm=none
@@ -170,6 +175,7 @@ endif
 " -------------------------------------
 "  Highlight ZenkakuSpace
 " -------------------------------------
+scriptencoding=utf-8
 highlight ZenkakuSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
 match ZenkakuSpace /　/
 
@@ -204,4 +210,4 @@ set mouse=a
 " -------------------------------------
 call localrc#load('.vimrc.local', getcwd())
 
-" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix encoding=utf-8
+" vi: expandtab ts=4 sw=4 sts=4 tw=0 ff=unix
