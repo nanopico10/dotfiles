@@ -1,10 +1,13 @@
 #!/bin/bash
 
+### Check if exists git command.
+type -P git >/dev/null || { echo -e "\e[31mGit not found." ; exit 1; }
+
+### NeoBundle
 if [ ! -d ./vimfiles/bundle ] ; then
     mkdir -p ./vimfiles/bundle
 fi
 
-### NeoBundle
 if [ ! -s ./vimfiles/bundle/neobundle.vim ] ; then
     git clone https://github.com/Shougo/neobundle.vim.git ./vimfiles/bundle/neobundle.vim
 fi
@@ -44,12 +47,25 @@ function symlink() {
     fi
 }
 
-symlink ./_vimrc ~/.vimrc 
-symlink ./_gvimrc ~/.gvimrc
-symlink ./vimfiles ~/.vim
+VIMRC=
+if [[ $OS == "Windows_NT" ]] ; then
+    VIMRC=~/_vimrc
+    symlink ./_vimrc ~/_vimrc
+    symlink ./_gvimrc ~/_gvimrc
+    symlink ./vimfiles ~/vimfiles
+else
+    VIMRC=~/.vimrc
+    symlink ./_vimrc ~/.vimrc 
+    symlink ./_gvimrc ~/.gvimrc
+    symlink ./vimfiles ~/.vim
+fi
 
 ### Install plugins
 echo -e "\e[32mInstall plugins.\e[m"
-vim -u ~/.vimrc -c 'NeoBundleInstall' -c 'qall'
+if [[ $OS == "Windows_NT" ]] ; then
+  gvim -u $VIMRC -c 'NeoBundleInstall' -c 'qall'
+else
+  vim -u $VIMRC -c 'NeoBundleInstall' -c 'qall'
+fi
 
 # vim: expandtab ts=4 sw=4 sts=4 ff=unix
