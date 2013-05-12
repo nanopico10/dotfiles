@@ -207,7 +207,7 @@ set mouse=a
 " -------------------------------------
 "  Move cursor by display lines
 "  when wrapping
-"  from http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+"  by http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 " -------------------------------------
 " {{{
 noremap <silent> <Leader>w :call ToggleWrap()<CR>

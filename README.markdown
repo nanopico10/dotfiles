@@ -9,7 +9,7 @@
 Github リポジトリからクローンして、setup.sh などを実行したりします。
 
 ```bash
-mkdir -p vimconf.d
+mkdir -p dotfiles
 git clone https://github.com/toshiki-hayashi/vimconf.d.git vimconf.d
 ./setup.sh
 ```
