@@ -53,11 +53,14 @@ set infercase
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_manual_completion_start_length = 3
 let g:neocomplcache_use_vimproc = 1
 imap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+highlight Pmenu ctermbg=LightGreen
 
 " -------------------------------------
 "  vim-surround
@@ -203,6 +206,51 @@ nnoremap <C-t>      :tabnext<CR>
 "  Set mouse enabled.
 " -------------------------------------
 set mouse=a
+
+" -------------------------------------
+"  Move cursor by display lines
+"  when wrapping
+"  by http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+" -------------------------------------
+" {{{
+noremap <silent> <Leader>w :call ToggleWrap()<CR>
+function! ToggleWrap()
+    if &wrap
+        echo "Wrap OFF"
+        setlocal nowrap
+        set virtualedit=all
+        silent! nunmap <buffer> <Up>
+        silent! nunmap <buffer> <Down>
+        silent! nunmap <buffer> <Home>
+        silent! nunmap <buffer> <End>
+        silent! iunmap <buffer> <Up>
+        silent! iunmap <buffer> <Down>
+        silent! iunmap <buffer> <Home>
+        silent! iunmap <buffer> <End>
+    else
+        echo "Wrap ON"
+        setlocal wrap nolinebreak nolist
+        set virtualedit=
+        setlocal display+=lastline
+        noremap  <buffer> <silent> k gk
+        noremap  <buffer> <silent> j gj
+        noremap  <buffer> <silent> <Up>   gk
+        noremap  <buffer> <silent> <Down> gj
+        noremap  <buffer> <silent> <Home> g<Home>
+        noremap  <buffer> <silent> <End>  g<End>
+        inoremap <buffer> <silent> <Up>   <C-o>gk
+        inoremap <buffer> <silent> <Down> <C-o>gj
+        inoremap <buffer> <silent> <Home> <C-o>g<Home>
+        inoremap <buffer> <silent> <End>  <C-o>g<End>
+    endif
+endfunction
+" }}}
+
+
+" -------------------------------------
+"  Set backspace enabled in insert mode.
+" -------------------------------------
+set backspace=indent,eol,start
 
 " -------------------------------------
 "  Load a local vimrc if exists.

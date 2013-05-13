@@ -34,7 +34,7 @@ if [ ! -s ./vimfiles/bundle/vimproc ] ; then
         make -f $VIMPROC_MAKE
         popd
     else
-        echo -e "\e[32m[INFO] You should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
+        echo -e "\e[32mYou should run 'make -f your_machines_makefile' in ./vimfiles/bundle/vimproc.\e[m"
     fi
 fi
 
@@ -42,7 +42,7 @@ fi
 function symlink() {
     if [ ! -e $2 ] ; then
         f=$(cd $(dirname $1) && pwd)/$(basename $1)
-        echo -e "\e[32m[INFO] Create a symbolic link : \e[m$2 -> ${f}"
+        echo -e "\e[32mCreate a symbolic link : \e[m$2 -> ${f}"
         ln -s $f $2
     fi
 }
@@ -61,7 +61,7 @@ else
 fi
 
 ### Install plugins
-echo -e "\e[32m[INFO] Install plugins.\e[m"
+echo -e "\e[32mInstall plugins.\e[m"
 if [[ $OS == "Windows_NT" ]] ; then
   gvim -u $VIMRC -c 'NeoBundleInstall' -c 'qall'
 else
