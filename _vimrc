@@ -4,6 +4,12 @@ filetype plugin off
 filetype indent off
  
 " -------------------------------------
+"  Set utf-8 encoding
+" -------------------------------------
+set fileencoding=utf-8
+set encoding=utf-8
+
+" -------------------------------------
 "  NeoBundle
 " -------------------------------------
 " {{{
