@@ -130,6 +130,11 @@ aug RailsDictSetting
 aug END
 "}}}
 
+" -------------------------------------
+"  zencoding-vim
+" -------------------------------------
+NeoBundle 'mattn/zencoding-vim'
+
 filetype on
 filetype plugin on
 filetype indent on
