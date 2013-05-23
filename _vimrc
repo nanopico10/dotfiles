@@ -27,9 +27,9 @@ endif
 if has('mac')
     let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
 elseif has('win32')
-    let g:vimproc_dll_path = $HOME . 'vimfiles/bundle/vimproc/autoload/vimproc_win32.dll'
+    let g:vimproc_dll_path = $HOME . '/vimfiles/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
-    let g:vimproc_dll_path = $HOME . 'vimfiles/bundle/vimproc/autoload/vimproc_win64.dll'
+    let g:vimproc_dll_path = $HOME . '/vimfiles/bundle/vimproc/autoload/vimproc_win64.dll'
 endif
 
 " Retrieve plugins via https.
