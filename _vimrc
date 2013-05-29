@@ -145,15 +145,16 @@ NeoBundleLazy 'derekwyatt/vim-scala.git', {
     \ 'autoload' : { 'filetypes': ['scala'] } }
 augroup SetupScalaIndent
     autocmd!
+    au BufNewFile,BufRead *.scala setfiletype scala
     autocmd FileType scala set sw=2 sts=2 et autoindent ts=2
 augroup END
 
 " -------------------------------------
 "  vim-indent-guides
 " -------------------------------------
-NeoBundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
+"NeoBundle 'nathanaelkane/vim-indent-guides'
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_guide_size = 1
 
 
 " -------------------------------------
