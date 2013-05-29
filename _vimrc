@@ -21,9 +21,9 @@ endif
 if has('mac')
     let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
 elseif has('win32')
-    let g:vimproc_dll_path = $HOME . 'vimfiles/bundle/vimproc/autoload/vimproc_win32.dll'
+    let g:vimproc_dll_path = $HOME . '/vimfiles/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
-    let g:vimproc_dll_path = $HOME . 'vimfiles/bundle/vimproc/autoload/vimproc_win64.dll'
+    let g:vimproc_dll_path = $HOME . '/vimfiles/bundle/vimproc/autoload/vimproc_win64.dll'
 endif
 
 " Retrieve plugins via https.
@@ -56,6 +56,11 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_auto_completion_start_length = 3
 let g:neocomplcache_manual_completion_start_length = 3
 let g:neocomplcache_use_vimproc = 1
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'scala' : $HOME . '/.vim/dict/scala.dict',
+    \ }
+
 imap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 imap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
@@ -132,6 +137,24 @@ aug RailsDictSetting
     au!
 aug END
 "}}}
+
+" -------------------------------------
+"  vim-scala
+" -------------------------------------
+NeoBundleLazy 'derekwyatt/vim-scala.git', {
+    \ 'autoload' : { 'filetypes': ['scala'] } }
+augroup SetupScalaIndent
+    autocmd!
+    autocmd FileType scala set sw=2 sts=2 et autoindent ts=2
+augroup END
+
+" -------------------------------------
+"  vim-indent-guides
+" -------------------------------------
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+
 
 " -------------------------------------
 "  zencoding-vim
